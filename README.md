@@ -41,9 +41,9 @@ $ npm install
 ## Running Application
 In the project directory, enter:
 ```
-$ gulp && php -S localhost:8000 -t public
+$ npm start
 ```
 
 To see it running, open up your browser and go to `localhost:8000`
 
-For right now, everytime you make a change to any files in the assets folder you will have to rerun `gulp`
+For right now, everytime you make a change to any files in the assets folder you will have to rerun `npm start`

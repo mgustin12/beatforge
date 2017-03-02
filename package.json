@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Community of artists creating and sharing beats",
   "scripts": {
+    "start": "gulp && php -S localhost:8000 -t public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
