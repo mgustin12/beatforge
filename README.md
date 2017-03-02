@@ -8,7 +8,7 @@ A community of artists making and sharing beats.
 
 From the command line, enter:
 ```
-$ git clone git@github.com:mgustin12/beatforge.git
+$ git clone https://github.com/mgustin12/beatforge.git
 $ cd beatforge
 ```
 
