@@ -27418,7 +27418,7 @@ var MainLayout = function (_Component) {
         _react2.default.createElement(
           "h1",
           null,
-          "Hello World!"
+          "Hello World!!"
         ),
         _react2.default.createElement(
           "div",

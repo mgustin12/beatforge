@@ -12,7 +12,7 @@ class App extends Component {
             <Provider store={this.props.store}>
                 <Router history={browserHistory}>
                     <Route path="/" component={MainLayout}>
-
+                    
                     </Route>
                 </Router>
             </Provider>

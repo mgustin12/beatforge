@@ -20,9 +20,15 @@ function jsify() {
         .pipe(source('application.js'))
         // Start piping stream to tasks!
         .pipe(gulp.dest('public/js'));
-}
+};
 
 gulp.task('css', lessify);
 gulp.task('js', jsify);
+
+gulp.task('watch', function(){
+    gulp.watch('resources/assets/less/*.less', ['css']); 
+    gulp.watch('resources/assets/js/**/*.jsx', ['js']); 
+    gulp.watch('resources/assets/js/**/*.js', ['js']);
+});
 
 gulp.task('default', ['css', 'js']);
