@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
+import Header from './shared/Header.jsx';
+
 class MainLayout extends Component {
 
   render() {
     return (
       <div className="page">
-        <h1>Hello World!!</h1>
-        <div className="view-container">
+        <Header />
+        <div className="view">
           {this.props.children}
         </div>
       </div>
