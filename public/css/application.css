@@ -1,3 +1,38 @@
-.test {
-  color: blue;
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+#app {
+  height: 100%;
+}
+#app .page {
+  height: 100%;
+}
+#app .page .view {
+  height: 100%;
+}
+.beatpad-page {
+  display: flex;
+  direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.beatpad-page .beatpad-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 330px;
+}
+.beatpad-page .beatpad {
+  text-align: center;
+}
+.beatpad-page .beatpad .pad {
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+  border: 1px solid lightgrey;
+  border-radius: 6px;
+  background-color: cyan;
 }

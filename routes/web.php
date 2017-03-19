@@ -11,11 +11,6 @@
 |
 */
 
-$app->group(['prefix' => 'api'], function () use ($app) {
-    // Matches The "/api/beats" URL
-    $app->get('beats', 'BeatsController@index');
-});
-
 $app->get('/', function () use ($app) {
     return view('index');
 });
