@@ -1,11 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, compose } from 'redux'
+import { createStore, compose, combineReducers } from 'redux'
 import { ApolloClient, createNetworkInterface } from 'react-apollo'
 
-import App from './components/App.jsx'
-import reducers from './reducers'
+import App from './core/components/App.jsx'
 import middleware from './middleware'
+
+import profile from './profile/reducer.js'
+import beatpad from './beatpad/reducer.js'
+import home from './home/reducer.js'
+import core from './core/reducer.js'
+
+const reducers = combineReducers({
+    profile,
+    beatpad,
+    home,
+    core
+});
 
 const initialState = {};
 

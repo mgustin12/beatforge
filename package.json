@@ -4,7 +4,7 @@
   "description": "Community of artists creating and sharing beats",
   "scripts": {
     "start": "php -S localhost:8000 -t public",
-    "watch": "gulp watch",
+    "gulp": "gulp && gulp watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

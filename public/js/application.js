@@ -35443,137 +35443,6 @@ module.exports = warning;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
-
-var _reactApollo = require('react-apollo');
-
-var _MainLayout = require('./MainLayout.jsx');
-
-var _MainLayout2 = _interopRequireDefault(_MainLayout);
-
-var _HomePage = require('./home/HomePage.jsx');
-
-var _HomePage2 = _interopRequireDefault(_HomePage);
-
-var _BeatpadPage = require('./beatpad/BeatpadPage.jsx');
-
-var _BeatpadPage2 = _interopRequireDefault(_BeatpadPage);
-
-var _ProfilePage = require('../containers/profile/ProfilePage.js');
-
-var _ProfilePage2 = _interopRequireDefault(_ProfilePage);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var App = function (_Component) {
-    _inherits(App, _Component);
-
-    function App() {
-        _classCallCheck(this, App);
-
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-    }
-
-    _createClass(App, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                _reactApollo.ApolloProvider,
-                { store: this.props.store, client: this.props.client },
-                _react2.default.createElement(
-                    _reactRouter.Router,
-                    { history: _reactRouter.browserHistory },
-                    _react2.default.createElement(
-                        _reactRouter.Route,
-                        { path: '/', component: _MainLayout2.default },
-                        _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _HomePage2.default }),
-                        _react2.default.createElement(_reactRouter.Route, { path: '/beatpad', component: _BeatpadPage2.default }),
-                        _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _ProfilePage2.default })
-                    )
-                )
-            );
-        }
-    }]);
-
-    return App;
-}(_react.Component);
-
-exports.default = App;
-
-},{"../containers/profile/ProfilePage.js":292,"./MainLayout.jsx":286,"./beatpad/BeatpadPage.jsx":288,"./home/HomePage.jsx":289,"react":271,"react-apollo":68,"react-router":240}],286:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Header = require('./shared/Header.jsx');
-
-var _Header2 = _interopRequireDefault(_Header);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var MainLayout = function (_Component) {
-  _inherits(MainLayout, _Component);
-
-  function MainLayout() {
-    _classCallCheck(this, MainLayout);
-
-    return _possibleConstructorReturn(this, (MainLayout.__proto__ || Object.getPrototypeOf(MainLayout)).apply(this, arguments));
-  }
-
-  _createClass(MainLayout, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { className: 'page' },
-        _react2.default.createElement(_Header2.default, null),
-        _react2.default.createElement(
-          'div',
-          { className: 'view' },
-          this.props.children
-        )
-      );
-    }
-  }]);
-
-  return MainLayout;
-}(_react.Component);
-
-exports.default = MainLayout;
-
-},{"./shared/Header.jsx":291,"react":271}],287:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
@@ -35729,7 +35598,7 @@ var Beatpad = function (_Component) {
 
 exports.default = Beatpad;
 
-},{"react":271}],288:[function(require,module,exports){
+},{"react":271}],286:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35779,11 +35648,29 @@ var BeatpadPage = function (_Component) {
 
 exports.default = BeatpadPage;
 
-},{"./Beatpad.jsx":287,"react":271}],289:[function(require,module,exports){
-'use strict';
+},{"./Beatpad.jsx":285,"react":271}],287:[function(require,module,exports){
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
+});
+var beatpad = function beatpad() {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	var action = arguments[1];
+
+	switch (action.type) {
+		default:
+			return state;
+	}
+};
+
+exports.default = beatpad;
+
+},{}],288:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -35791,6 +35678,26 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _reactApollo = require('react-apollo');
+
+var _MainLayout = require('./MainLayout.jsx');
+
+var _MainLayout2 = _interopRequireDefault(_MainLayout);
+
+var _HomePage = require('../../home/components/HomePage.jsx');
+
+var _HomePage2 = _interopRequireDefault(_HomePage);
+
+var _BeatpadPage = require('../../beatpad/components/BeatpadPage.jsx');
+
+var _BeatpadPage2 = _interopRequireDefault(_BeatpadPage);
+
+var _ProfilePage = require('../../profile/containers/ProfilePage.js');
+
+var _ProfilePage2 = _interopRequireDefault(_ProfilePage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35800,126 +35707,42 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var HomePage = function (_Component) {
-	_inherits(HomePage, _Component);
+var App = function (_Component) {
+    _inherits(App, _Component);
 
-	function HomePage(props) {
-		_classCallCheck(this, HomePage);
+    function App() {
+        _classCallCheck(this, App);
 
-		return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this, props));
-	}
+        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    }
 
-	_createClass(HomePage, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'h1',
-				null,
-				'HomePage'
-			);
-		}
-	}]);
+    _createClass(App, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                _reactApollo.ApolloProvider,
+                { store: this.props.store, client: this.props.client },
+                _react2.default.createElement(
+                    _reactRouter.Router,
+                    { history: _reactRouter.browserHistory },
+                    _react2.default.createElement(
+                        _reactRouter.Route,
+                        { path: '/', component: _MainLayout2.default },
+                        _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _HomePage2.default }),
+                        _react2.default.createElement(_reactRouter.Route, { path: '/beatpad', component: _BeatpadPage2.default }),
+                        _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _ProfilePage2.default })
+                    )
+                )
+            );
+        }
+    }]);
 
-	return HomePage;
+    return App;
 }(_react.Component);
 
-exports.default = HomePage;
+exports.default = App;
 
-},{"react":271}],290:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ProfilePage = function (_Component) {
-	_inherits(ProfilePage, _Component);
-
-	function ProfilePage(props) {
-		_classCallCheck(this, ProfilePage);
-
-		var _this = _possibleConstructorReturn(this, (ProfilePage.__proto__ || Object.getPrototypeOf(ProfilePage)).call(this, props));
-
-		_this.state = {
-			name: ''
-		};
-		return _this;
-	}
-
-	_createClass(ProfilePage, [{
-		key: 'componentWillReceiveProps',
-		value: function componentWillReceiveProps(props) {
-			var name = this.state.name;
-			if (props.users) {
-				name = props.users[0].name;
-			}
-			this.setState({
-				name: name
-			});
-		}
-	}, {
-		key: 'changeName',
-		value: function changeName(e) {
-			this.setState({
-				name: e.currentTarget.value
-			});
-		}
-	}, {
-		key: 'updateName',
-		value: function updateName(name) {
-			this.props.updateName(1, name);
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var name = '';
-			if (this.props.users) {
-				name = this.props.users[0].name;
-			}
-
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement('input', { value: this.state.name, onChange: this.changeName.bind(this) }),
-				_react2.default.createElement(
-					'button',
-					{ onClick: this.updateName.bind(this, this.state.name) },
-					'Submit'
-				),
-				_react2.default.createElement(
-					'h1',
-					null,
-					'ProfilePage'
-				),
-				_react2.default.createElement(
-					'h2',
-					null,
-					this.state.name
-				)
-			);
-		}
-	}]);
-
-	return ProfilePage;
-}(_react.Component);
-
-exports.default = ProfilePage;
-
-},{"react":271}],291:[function(require,module,exports){
+},{"../../beatpad/components/BeatpadPage.jsx":286,"../../home/components/HomePage.jsx":292,"../../profile/containers/ProfilePage.js":298,"./MainLayout.jsx":290,"react":271,"react-apollo":68,"react-router":240}],289:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35997,123 +35820,12 @@ var Header = function (_Component) {
 
 exports.default = Header;
 
-},{"react":271,"react-router":240}],292:[function(require,module,exports){
+},{"react":271,"react-router":240}],290:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
-
-var _templateObject = _taggedTemplateLiteral(['\n    {\n\t\tusers {\n\t\t\tname\n\t\t}\n    }\n  '], ['\n    {\n\t\tusers {\n\t\t\tname\n\t\t}\n    }\n  ']),
-    _templateObject2 = _taggedTemplateLiteral(['\n\t\tmutation {\n\t\t\tupdateUserName(id: ', ', name: "', '") {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tusername\n\t\t\t}\n\t\t}\n\t\t'], ['\n\t\tmutation {\n\t\t\tupdateUserName(id: ', ', name: "', '") {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tusername\n\t\t\t}\n\t\t}\n\t\t']);
-
-var _reactRedux = require('react-redux');
-
-var _graphqlTag = require('graphql-tag');
-
-var _graphqlTag2 = _interopRequireDefault(_graphqlTag);
-
-var _reactApollo = require('react-apollo');
-
-var _graphql = require('../../lib/graphql.js');
-
-var _graphql2 = _interopRequireDefault(_graphql);
-
-var _ProfilePage = require('../../components/profile/ProfilePage.jsx');
-
-var _ProfilePage2 = _interopRequireDefault(_ProfilePage);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-	return {};
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	return {};
-};
-
-var mapQueryToPromise = function mapQueryToPromise(query) {
-	var queryUsers = (0, _graphqlTag2.default)(_templateObject);
-
-	return query({
-		query: queryUsers
-	}).then(function (result) {
-		return {
-			users: result.data.users
-		};
-	});
-};
-
-var mapMutationToProps = function mapMutationToProps(mutate) {
-	var mutateUserName = function mutateUserName(id, name) {
-		return (0, _graphqlTag2.default)(_templateObject2, id, name);
-	};
-
-	return {
-		updateName: function updateName(id, name) {
-			return mutate({
-				mutation: mutateUserName(id, name)
-			}).then(function (result) {});
-		}
-	};
-};
-
-exports.default = (0, _reactApollo.compose)((0, _graphql2.default)(mapQueryToPromise, mapMutationToProps), (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps))(_ProfilePage2.default);
-
-},{"../../components/profile/ProfilePage.jsx":290,"../../lib/graphql.js":294,"graphql-tag":33,"react-apollo":68,"react-redux":208}],293:[function(require,module,exports){
-'use strict';
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _redux = require('redux');
-
-var _reactApollo = require('react-apollo');
-
-var _App = require('./components/App.jsx');
-
-var _App2 = _interopRequireDefault(_App);
-
-var _reducers = require('./reducers');
-
-var _reducers2 = _interopRequireDefault(_reducers);
-
-var _middleware = require('./middleware');
-
-var _middleware2 = _interopRequireDefault(_middleware);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var initialState = {};
-
-var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || _redux.compose;
-var enhancer = composeEnhancers(_middleware2.default);
-
-var client = new _reactApollo.ApolloClient({
-    networkInterface: (0, _reactApollo.createNetworkInterface)({ uri: 'http://localhost:8000/graphql' })
-});
-
-_reactDom2.default.render(_react2.default.createElement(_App2.default, {
-    store: (0, _redux.createStore)(_reducers2.default, initialState, enhancer),
-    client: client
-}), document.getElementById('app'));
-
-},{"./components/App.jsx":285,"./middleware":295,"./reducers":298,"react":271,"react-apollo":68,"react-dom":72,"redux":277}],294:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -36121,11 +35833,11 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactApollo = require('react-apollo');
+var _Header = require('./Header.jsx');
+
+var _Header2 = _interopRequireDefault(_Header);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -36133,95 +35845,43 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-exports.default = function (mapQueryToPromise, mapMutationToProps) {
-	var graphql = function graphql(WrappedComponent) {
-		var GraphQL = function (_Component) {
-			_inherits(GraphQL, _Component);
+var MainLayout = function (_Component) {
+  _inherits(MainLayout, _Component);
 
-			function GraphQL(props) {
-				_classCallCheck(this, GraphQL);
+  function MainLayout() {
+    _classCallCheck(this, MainLayout);
 
-				var _this = _possibleConstructorReturn(this, (GraphQL.__proto__ || Object.getPrototypeOf(GraphQL)).call(this, props));
+    return _possibleConstructorReturn(this, (MainLayout.__proto__ || Object.getPrototypeOf(MainLayout)).apply(this, arguments));
+  }
 
-				_this.state = {
-					result: null
-				};
-				return _this;
-			}
+  _createClass(MainLayout, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'page' },
+        _react2.default.createElement(_Header2.default, null),
+        _react2.default.createElement(
+          'div',
+          { className: 'view' },
+          this.props.children
+        )
+      );
+    }
+  }]);
 
-			_createClass(GraphQL, [{
-				key: 'componentDidMount',
-				value: function componentDidMount() {
-					var _props = this.props,
-					    client = _props.client,
-					    ownProps = _objectWithoutProperties(_props, ['client']);
+  return MainLayout;
+}(_react.Component);
 
-					mapQueryToPromise(client.query.bind(client), ownProps).then(function (result) {
-						this.setState({
-							result: result
-						});
-					}.bind(this));
-				}
-			}, {
-				key: 'componentWillReceiveProps',
-				value: function componentWillReceiveProps(newProps) {
-					var _props2 = this.props,
-					    client = _props2.client,
-					    ownProps = _objectWithoutProperties(_props2, ['client']);
+exports.default = MainLayout;
 
-					mapQueryToPromise(client.query.bind(client), ownProps).then(function (result) {
-						this.setState({
-							result: result
-						});
-					}.bind(this));
-				}
-			}, {
-				key: 'render',
-				value: function render() {
-					var _props3 = this.props,
-					    children = _props3.children,
-					    client = _props3.client,
-					    ownProps = _objectWithoutProperties(_props3, ['children', 'client']);
-
-					var props = void 0;
-
-					if (this.state.result) {
-						props = _extends({}, ownProps, mapMutationToProps(client.mutate.bind(client), ownProps), this.state.result);
-					} else {
-						props = _extends({}, ownProps, mapMutationToProps(client.mutate.bind(client), ownProps));
-					}
-
-					return _react2.default.createElement(WrappedComponent, props, children);
-				}
-			}]);
-
-			return GraphQL;
-		}(_react.Component);
-
-		return GraphQL;
-	};
-
-	return (0, _reactApollo.compose)(_reactApollo.withApollo, graphql);
-};
-
-},{"react":271,"react-apollo":68}],295:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = require('redux');
-
-exports.default = (0, _redux.applyMiddleware)();
-
-},{"redux":277}],296:[function(require,module,exports){
+},{"./Header.jsx":289,"react":271}],291:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-var beatpad = function beatpad() {
+var core = function core() {
 	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	var action = arguments[1];
 
@@ -36231,9 +35891,55 @@ var beatpad = function beatpad() {
 	}
 };
 
-exports.default = beatpad;
+exports.default = core;
 
-},{}],297:[function(require,module,exports){
+},{}],292:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var HomePage = function (_Component) {
+	_inherits(HomePage, _Component);
+
+	function HomePage(props) {
+		_classCallCheck(this, HomePage);
+
+		return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this, props));
+	}
+
+	_createClass(HomePage, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'h1',
+				null,
+				'HomePage'
+			);
+		}
+	}]);
+
+	return HomePage;
+}(_react.Component);
+
+exports.default = HomePage;
+
+},{"react":271}],293:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36251,7 +35957,194 @@ var home = function home() {
 
 exports.default = home;
 
-},{}],298:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
+'use strict';
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _redux = require('redux');
+
+var _reactApollo = require('react-apollo');
+
+var _App = require('./core/components/App.jsx');
+
+var _App2 = _interopRequireDefault(_App);
+
+var _middleware = require('./middleware');
+
+var _middleware2 = _interopRequireDefault(_middleware);
+
+var _reducer = require('./profile/reducer.js');
+
+var _reducer2 = _interopRequireDefault(_reducer);
+
+var _reducer3 = require('./beatpad/reducer.js');
+
+var _reducer4 = _interopRequireDefault(_reducer3);
+
+var _reducer5 = require('./home/reducer.js');
+
+var _reducer6 = _interopRequireDefault(_reducer5);
+
+var _reducer7 = require('./core/reducer.js');
+
+var _reducer8 = _interopRequireDefault(_reducer7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var reducers = (0, _redux.combineReducers)({
+    profile: _reducer2.default,
+    beatpad: _reducer4.default,
+    home: _reducer6.default,
+    core: _reducer8.default
+});
+
+var initialState = {};
+
+var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || _redux.compose;
+var enhancer = composeEnhancers(_middleware2.default);
+
+var client = new _reactApollo.ApolloClient({
+    networkInterface: (0, _reactApollo.createNetworkInterface)({ uri: 'http://localhost:8000/graphql' })
+});
+
+_reactDom2.default.render(_react2.default.createElement(_App2.default, {
+    store: (0, _redux.createStore)(reducers, initialState, enhancer),
+    client: client
+}), document.getElementById('app'));
+
+},{"./beatpad/reducer.js":287,"./core/components/App.jsx":288,"./core/reducer.js":291,"./home/reducer.js":293,"./middleware":295,"./profile/reducer.js":301,"react":271,"react-apollo":68,"react-dom":72,"redux":277}],295:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = require('redux');
+
+exports.default = (0, _redux.applyMiddleware)();
+
+},{"redux":277}],296:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var updateName = exports.updateName = function updateName(id, name) {
+	return {
+		type: 'UPDATE_NAME',
+		id: id,
+		name: name
+	};
+};
+
+},{}],297:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ProfilePage = function (_Component) {
+	_inherits(ProfilePage, _Component);
+
+	function ProfilePage(props) {
+		_classCallCheck(this, ProfilePage);
+
+		var _this = _possibleConstructorReturn(this, (ProfilePage.__proto__ || Object.getPrototypeOf(ProfilePage)).call(this, props));
+
+		_this.state = {
+			name: ''
+		};
+		return _this;
+	}
+
+	_createClass(ProfilePage, [{
+		key: 'componentWillReceiveProps',
+		value: function componentWillReceiveProps(props) {
+			var name = this.state.name;
+			if (props.users) {
+				name = props.users[0].name;
+			}
+			this.setState({
+				name: name
+			});
+		}
+	}, {
+		key: 'changeName',
+		value: function changeName(e) {
+			this.setState({
+				name: e.currentTarget.value
+			});
+		}
+	}, {
+		key: 'updateName',
+		value: function updateName() {
+			var name = this.state.name;
+			this.props.mutateName(1, name);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var name = '';
+			if (this.props.users) {
+				name = this.props.users[0].name;
+			}
+
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement('input', { value: this.state.name, onChange: this.changeName.bind(this) }),
+				_react2.default.createElement(
+					'button',
+					{ onClick: this.updateName.bind(this) },
+					'Submit'
+				),
+				_react2.default.createElement(
+					'h1',
+					null,
+					'ProfilePage'
+				),
+				_react2.default.createElement(
+					'h2',
+					null,
+					this.state.name
+				)
+			);
+		}
+	}]);
+
+	return ProfilePage;
+}(_react.Component);
+
+ProfilePage.propTypes = {
+	id: _react.PropTypes.number,
+	name: _react.PropTypes.string
+};
+
+exports.default = ProfilePage;
+
+},{"react":271}],298:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36260,27 +36153,104 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = require('redux');
 
-var _profile = require('./profile.js');
+var _reactRedux = require('react-redux');
 
-var _profile2 = _interopRequireDefault(_profile);
+var _graphqlTag = require('graphql-tag');
 
-var _home = require('./home.js');
+var _graphqlTag2 = _interopRequireDefault(_graphqlTag);
 
-var _home2 = _interopRequireDefault(_home);
+var _reactApollo = require('react-apollo');
 
-var _beatpad = require('./beatpad.js');
+var _queries = require('../queries.js');
 
-var _beatpad2 = _interopRequireDefault(_beatpad);
+var _mutations = require('../mutations.js');
+
+var _actions = require('../actions.js');
+
+var _ProfilePage = require('../components/ProfilePage.jsx');
+
+var _ProfilePage2 = _interopRequireDefault(_ProfilePage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = (0, _redux.combineReducers)({
-	home: _home2.default,
-	profile: _profile2.default,
-	beatpad: _beatpad2.default
+/** Redux Container **/
+var mapStateToProps = function mapStateToProps(state) {
+	return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	return (0, _redux.bindActionCreators)({
+		onUpdateName: _actions.updateName
+	}, dispatch);
+};
+
+/** GraphQL Container **/
+var withQueryName = (0, _reactApollo.graphql)(_queries.QUERY_NAME, {
+	props: function props(_ref) {
+		var data = _ref.data;
+		return {
+			users: data.users
+		};
+	}
 });
 
-},{"./beatpad.js":296,"./home.js":297,"./profile.js":299,"redux":277}],299:[function(require,module,exports){
+var withMutateName = (0, _reactApollo.graphql)(_mutations.MUTATE_NAME, {
+	props: function props(_ref2) {
+		var ownProps = _ref2.ownProps,
+		    mutate = _ref2.mutate;
+		return {
+			mutateName: function mutateName(id, name) {
+				return mutate({ variables: { id: id, name: name } }).then(function (result) {
+					ownProps.onUpdateName(result.id, result.name);
+				});
+			}
+		};
+	}
+});
+
+exports.default = (0, _reactApollo.compose)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps), withQueryName, withMutateName)(_ProfilePage2.default);
+
+},{"../actions.js":296,"../components/ProfilePage.jsx":297,"../mutations.js":299,"../queries.js":300,"graphql-tag":33,"react-apollo":68,"react-redux":208,"redux":277}],299:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.MUTATE_NAME = undefined;
+
+var _templateObject = _taggedTemplateLiteral(['\nmutation updateUserName($id: Int!, $name: String!) {\n\tupdateUserName(id: $id, name: $name) {\n\t\tid\n\t\tname\n\t\tusername\n\t}\n}\n'], ['\nmutation updateUserName($id: Int!, $name: String!) {\n\tupdateUserName(id: $id, name: $name) {\n\t\tid\n\t\tname\n\t\tusername\n\t}\n}\n']);
+
+var _graphqlTag = require('graphql-tag');
+
+var _graphqlTag2 = _interopRequireDefault(_graphqlTag);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var MUTATE_NAME = exports.MUTATE_NAME = (0, _graphqlTag2.default)(_templateObject);
+
+},{"graphql-tag":33}],300:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.QUERY_NAME = undefined;
+
+var _templateObject = _taggedTemplateLiteral(['\nquery {\n\tusers {\n\t\tname\n\t}\n}\n'], ['\nquery {\n\tusers {\n\t\tname\n\t}\n}\n']);
+
+var _graphqlTag = require('graphql-tag');
+
+var _graphqlTag2 = _interopRequireDefault(_graphqlTag);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var QUERY_NAME = exports.QUERY_NAME = (0, _graphqlTag2.default)(_templateObject);
+
+},{"graphql-tag":33}],301:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36298,4 +36268,4 @@ var profile = function profile() {
 
 exports.default = profile;
 
-},{}]},{},[293]);
+},{}]},{},[294]);

@@ -37,13 +37,21 @@ In the project directory, enter:
 $ npm install
 ```
 
+## Creating Database Tables
+```
+$ php artisan migrate
+```
+
+## Seeding the Database
+```
+$ php artisan db:seed
+```
 
 ## Running Application
 In the project directory, enter:
 ```
 $ npm start
+$ npm run gulp
 ```
 
 To see it running, open up your browser and go to `localhost:8000`
-
-For right now, everytime you make a change to any files in the assets folder you will have to rerun `npm start`

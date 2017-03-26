@@ -3,9 +3,9 @@ import { Router, Route, browserHistory } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
 
 import MainLayout from './MainLayout.jsx';
-import HomePage from './home/HomePage.jsx';
-import BeatpadPage from './beatpad/BeatpadPage.jsx';
-import ProfilePage from '../containers/profile/ProfilePage.js';
+import HomePage from '../../home/components/HomePage.jsx';
+import BeatpadPage from '../../beatpad/components/BeatpadPage.jsx';
+import ProfilePage from '../../profile/containers/ProfilePage.js';
 
 class App extends Component {
     render(){
