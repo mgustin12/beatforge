@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 class ProfilePage extends Component {
 	constructor(props) {
@@ -24,8 +24,9 @@ class ProfilePage extends Component {
 		});
 	}
 
-	updateName(name) {
-		this.props.updateName(1, name);
+	updateName() {
+		let name = this.state.name;
+		this.props.mutateName(1, name);
 	}
 
 	render() {
@@ -37,7 +38,7 @@ class ProfilePage extends Component {
 		return(
 			<div>
 				<input value={this.state.name} onChange={this.changeName.bind(this)} />
-				<button onClick={this.updateName.bind(this, this.state.name)}>Submit</button>
+				<button onClick={this.updateName.bind(this)}>Submit</button>
 				<h1>ProfilePage</h1>
 				<h2>{ this.state.name }</h2>
 			</div>
@@ -45,5 +46,10 @@ class ProfilePage extends Component {
 		);
 	}
 }
+
+ProfilePage.propTypes = {
+	id: PropTypes.number,
+	name: PropTypes.string
+};
 
 export default ProfilePage;

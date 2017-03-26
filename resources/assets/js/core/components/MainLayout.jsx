@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Header from './shared/Header.jsx';
+import Header from './Header.jsx';
 
 class MainLayout extends Component {
 
