@@ -35454,15 +35454,16 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var context = new (window.AudioContext || window.webkitAudioContext)();
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+var context = new AudioContext();
+var destination = context.destination;
+var source;
 
 var Beatpad = function (_Component) {
 	_inherits(Beatpad, _Component);
@@ -35473,121 +35474,90 @@ var Beatpad = function (_Component) {
 		var _this = _possibleConstructorReturn(this, (Beatpad.__proto__ || Object.getPrototypeOf(Beatpad)).call(this, props));
 
 		_this.state = {
-			note: '',
-			playedNotes: []
+			beat: {
+				name: 'Acid Rain',
+				url: 'files/acid_rain.mp3'
+			},
+			beatpad: [{
+				name: 'Acid Rain',
+				url: 'files/acid_rain.mp3'
+			}, {
+				name: 'Cocoa Butter Kisses',
+				url: 'files/cocoa_butter_kisses.mp3'
+			}],
+			playing: false
 		};
 		return _this;
 	}
 
 	_createClass(Beatpad, [{
-		key: 'playSong',
-		value: function playSong() {
-			context.decodeAudioData(audioData).then(function (decodedData) {
-				// use the decoded data here
-			});
+		key: 'loadBeat',
+		value: function loadBeat(url) {
+			var request = new XMLHttpRequest();
+			request.open("GET", url, true);
+			request.responseType = "arraybuffer";
+			request.onload = function () {
+				context.decodeAudioData(request.response, function (buffer) {
+					source.buffer = buffer;
+					source.connect(destination);
+				}, function (error) {
+					console.error(error);
+				});
+			};
+			request.send();
 		}
 	}, {
-		key: 'playNoise',
-		value: function playNoise() {
-			// Stereo
-			var channels = 2;
-
-			// Create an empty two second stereo buffer at the
-			// sample rate of the AudioContext
-			var frameCount = context.sampleRate * 2.0;
-			var myArrayBuffer = context.createBuffer(channels, frameCount, context.sampleRate);
-
-			// Fill the buffer with white noise;
-			// just random values between -1.0 and 1.0
-			for (var channel = 0; channel < channels; channel++) {
-				// This gives us the actual array that contains the data
-				var nowBuffering = myArrayBuffer.getChannelData(channel);
-				for (var i = 0; i < frameCount; i++) {
-					// Math.random() is in [0; 1.0]
-					// audio needs to be in [-1.0; 1.0]
-					nowBuffering[i] = Math.random() * 2 - 1;
-				}
-			}
-
-			// Get an AudioBufferSourceNode.
-			// This is the AudioNode to use when we want to play an AudioBuffer
-			var source = context.createBufferSource();
-
-			// set the buffer in the AudioBufferSourceNode
-			source.buffer = myArrayBuffer;
-
-			// connect the AudioBufferSourceNode to the
-			// destination so we can hear the sound
-			source.connect(context.destination);
-
-			// start the source playing
-			source.start();
-		}
-	}, {
-		key: 'selectBeat',
-		value: function selectBeat(note) {
-			var prev = this.state.playedNotes;
-			var playedNotes = [].concat(_toConsumableArray(prev), [note]);
+		key: 'playBeat',
+		value: function playBeat(beat) {
+			source = context.createBufferSource();
+			this.loadBeat(beat.url);
+			source.start(0);
 
 			this.setState({
-				note: note,
-				playedNotes: playedNotes
+				beat: beat,
+				playing: true
 			});
+		}
+	}, {
+		key: 'stopBeat',
+		value: function stopBeat() {
+			source.stop();
+
+			this.setState({
+				playing: false
+			});
+		}
+	}, {
+		key: 'padClick',
+		value: function padClick(beat) {
+			this.state.playing ? this.stopBeat() : this.playBeat(beat);
 		}
 	}, {
 		key: 'render',
 		value: function render() {
 			var _this2 = this;
 
-			var notes = ['A', 'B', 'C', 'D', 'E', 'F'];
-			var beatpad = notes.map(function (note, index) {
+			var beatpad = this.state.beatpad.map(function (beat, index) {
 				return _react2.default.createElement(
 					'div',
-					{ className: 'pad', key: index, onClick: _this2.selectBeat.bind(_this2, note) },
-					note
+					{ className: 'pad', key: index, onClick: _this2.padClick.bind(_this2, beat) },
+					index
 				);
-			});
-
-			var playedNotes = this.state.playedNotes.map(function (note, index) {
-				if (index == 0) {
-					return _react2.default.createElement(
-						'p',
-						{ key: index },
-						note
-					);
-				} else {
-					return _react2.default.createElement(
-						'p',
-						{ key: index },
-						', ' + note
-					);
-				}
 			});
 
 			return _react2.default.createElement(
 				'section',
 				{ className: 'beatpad' },
-				_react2.default.createElement(
-					'button',
-					{ onClick: this.playSong.bind(this) },
-					'Play Song'
-				),
-				_react2.default.createElement(
-					'button',
-					{ onClick: this.playNoise.bind(this) },
-					'Play Noise'
-				),
-				_react2.default.createElement(
+				this.state.playing ? _react2.default.createElement(
 					'h1',
 					null,
 					'Playing: ',
-					this.state.note
-				),
+					this.state.beat.name
+				) : null,
 				_react2.default.createElement(
 					'div',
 					{ className: 'beatpad-wrapper' },
-					beatpad,
-					playedNotes
+					beatpad
 				)
 			);
 		}
