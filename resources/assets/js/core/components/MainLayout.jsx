@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import Header from './Header.jsx';
+import Navbar from './Navbar.jsx';
 
 class MainLayout extends Component {
 
   render() {
     return (
       <div className="page">
-        <Header />
+        <Navbar />
         <div className="view">
           {this.props.children}
         </div>
