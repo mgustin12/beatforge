@@ -1,44 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 html, body {
 	height: 100%;
 	width: 100%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body {
+	margin: 0;
 }
 
 #app {
 	height: 100%;
 
 	.page {
+		display: flex;
 		height: 100%;
 
-		.view {
-			height: 100%;
+		.navbar {
+			flex: 0 0 125px;
+			background-color: #1c1c1f;
+			display: flex;
+    		flex-direction: column;
+    		align-items: center;
+
+			.navbar-brand {
+    			flex: 0 0 80px;
+    			margin-bottom: 5px;
+				padding: 10px 0;
+			}
+
+			.navbar-nav {
+				list-style: none;
+    			padding: 0;
+    			margin: 0;
+    			text-align: center;
+
+				.nav-item {
+					height: 50px;
+
+					.nav-link {
+						text-decoration: none;
+    					color: lightgrey;
+    					font-size: 20px;
+
+						&:hover {
+							color: white;
+						}
+					}
+				}
+			}
 		}
-	}
-}
 
-.beatpad-page {
-	display: flex;
-	direction: row;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-
-	.beatpad-wrapper {
-		display: flex;
-    	flex-direction: row;
-    	flex-wrap: wrap;
-    	max-width: 330px;
-	}
-
-	.beatpad {
-		text-align: center;
-
-		.pad {
-			height: 100px;
-			width: 100px;
-			margin: 5px;
-			border: 1px solid lightgrey;
-			border-radius: 6px;
-			background-color: cyan;
+		.view {
+			flex-grow: 1;
+			background-color: #121314;
 		}
 	}
 }

@@ -8,23 +8,6 @@ var source;
 class Beatpad extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			beat: {
-				name: 'Acid Rain',
-				url: 'files/acid_rain.mp3'
-			},
-			beatpad: [
-				{
-					name: 'Acid Rain',
-					url: 'files/acid_rain.mp3'
-				},
-				{
-					name: 'Cocoa Butter Kisses',
-					url: 'files/cocoa_butter_kisses.mp3'
-				}
-			],
-			playing: false
-		};
 	}
 
 	loadBeat(url) {
@@ -46,35 +29,25 @@ class Beatpad extends Component {
 		source = context.createBufferSource();
 		this.loadBeat(beat.url);
   		source.start(0);
-
-		this.setState({
-			beat,
-			playing: true
-		});
-	}
-
-	stopBeat() {
-		source.stop();
-
-		this.setState({
-			playing: false
-		});
-	}
-
-	padClick(beat) {
-		this.state.playing ? this.stopBeat() : this.playBeat(beat);
 	}
 
 	render() {
-		let beatpad = this.state.beatpad.map((beat, index) => {
-			return (
-				<div className="pad" key={index} onClick={this.padClick.bind(this, beat)}>{index}</div>
-			);
+		let beatpad = this.props.beatpad.map((beat, index) => {
+			if(Object.keys(beat).length == 0) {
+				return (
+					<div className={'pad disabled' + (this.props.editMode ? ' add' : '')} key={index} onClick={this.props.assignBeat.bind(this, index)}>
+						{this.props.editMode ? <span>+</span> : null}
+					</div>
+				);
+			} else {
+				return (
+					<div className="pad" key={index} onMouseDown={this.playBeat.bind(this, beat)}>{index + 1}</div>
+				);
+			}
 		});
 
 		return(
-			<section className="beatpad">
-				{ this.state.playing ? (<h1>Playing: {this.state.beat.name}</h1>) : null }
+			<section className="beatpad-section">
 				<div className="beatpad-wrapper">
 					{ beatpad }
 				</div>

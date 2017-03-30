@@ -1,38 +1,195 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 html,
 body {
   height: 100%;
   width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+body {
+  margin: 0;
 }
 #app {
   height: 100%;
 }
 #app .page {
+  display: flex;
   height: 100%;
+}
+#app .page .navbar {
+  flex: 0 0 125px;
+  background-color: #1c1c1f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#app .page .navbar .navbar-brand {
+  flex: 0 0 80px;
+  margin-bottom: 5px;
+  padding: 10px 0;
+}
+#app .page .navbar .navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+#app .page .navbar .navbar-nav .nav-item {
+  height: 50px;
+}
+#app .page .navbar .navbar-nav .nav-item .nav-link {
+  text-decoration: none;
+  color: lightgrey;
+  font-size: 20px;
+}
+#app .page .navbar .navbar-nav .nav-item .nav-link:hover {
+  color: white;
 }
 #app .page .view {
-  height: 100%;
+  flex-grow: 1;
+  background-color: #121314;
 }
+
 .beatpad-page {
   display: flex;
   direction: row;
-  justify-content: center;
-  align-items: center;
   height: 100%;
 }
-.beatpad-page .beatpad-wrapper {
+.beatpad-page .beatpad-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #121314;
+}
+.beatpad-page .beatpad-section .current-playing {
+  color: white;
+}
+.beatpad-page .beatpad-section .beatpad-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 330px;
+  width: 950px;
+  height: 880px;
+  align-items: center;
+  justify-content: center;
 }
-.beatpad-page .beatpad {
-  text-align: center;
-}
-.beatpad-page .beatpad .pad {
+.beatpad-page .beatpad-section .pad {
   height: 100px;
   width: 100px;
-  margin: 5px;
-  border: 1px solid lightgrey;
-  border-radius: 6px;
+  margin: 0 10px 10px 0;
   background-color: cyan;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  cursor: pointer;
+}
+.beatpad-page .beatpad-section .pad.disabled {
+  cursor: initial;
+  background: #1c1c1f;
+}
+.beatpad-page .beatpad-section .pad.disabled:hover {
+  background-color: #1c1c1f;
+}
+.beatpad-page .beatpad-section .pad.add {
+  background-color: #1c1c1f;
+  color: darkgrey;
+  font-size: 50px;
+}
+.beatpad-page .beatpad-section .pad.add:hover {
+  color: white;
+  background-color: #0d7777;
+}
+.beatpad-page .beatpad-section .pad:hover {
+  background-color: #00e5e6;
+}
+.beatpad-page .beat-list-section {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 300px;
+  background-color: #1c1c1f;
+  color: white;
+  padding: 20px;
+}
+.beatpad-page .beat-list-section .beat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.beatpad-page .beat-list-section .beat-list .beat-item {
+  padding: 5px 10px;
+  line-height: 30px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.beatpad-page .beat-list-section .beat-list .beat-item.active {
+  background-color: cyan;
+  color: black;
+}
+.beatpad-page .beat-list-section .beat-list .beat-item.active:hover {
+  background-color: cyan;
+}
+.beatpad-page .beat-list-section .beat-list .beat-item:hover {
+  background-color: #28282c;
+}
+.beatpad-page .beat-list-section .beat-list .beat-item .beat-position {
+  margin-right: 10px;
+}
+.beatpad-page .beat-list-section .beat-list .beat-item .beat-action {
+  float: right;
+}
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  color: white;
+}
+.profile-page .name {
+  text-align: center;
+}
+.profile-page .name span {
+  padding: 5px;
+  margin-right: 10px;
+  font-size: 22px;
+}
+.profile-page .name button {
+  background-color: darkorange;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 6px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1.4;
+  border-radius: 3px;
+}
+.profile-page .name button:hover {
+  background-color: #e67e00;
+}
+.profile-page .edit-name input {
+  border-radius: 3px 0 0 3px;
+  outline: none;
+  border: none;
+  padding: 8px;
+  font-size: 18px;
+}
+.profile-page .edit-name button {
+  background-color: #388E3C;
+  color: white;
+  border: none;
+  outline: none;
+  line-height: 1.4;
+  border-radius: 0 3px 3px 0;
+  padding: 6px 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.profile-page .edit-name button:hover {
+  background-color: #317c34;
 }

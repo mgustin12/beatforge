@@ -35460,6 +35460,82 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var BeatList = function (_Component) {
+	_inherits(BeatList, _Component);
+
+	function BeatList(props) {
+		_classCallCheck(this, BeatList);
+
+		return _possibleConstructorReturn(this, (BeatList.__proto__ || Object.getPrototypeOf(BeatList)).call(this, props));
+	}
+
+	_createClass(BeatList, [{
+		key: 'render',
+		value: function render() {
+			var beats = this.props.beats.map(function (beat, index) {
+				var pads = beat.pads.map(function (pad, index) {
+					return _react2.default.createElement(
+						'span',
+						{ key: index, className: 'beat-pad' },
+						pad + ' '
+					);
+				});
+
+				return _react2.default.createElement(
+					'li',
+					{ key: index, className: 'beat-item' + (this.props.queuedBeat && this.props.queuedBeat.name.includes(beat.name) ? ' active' : ''), onClick: this.props.setQueuedBeat.bind(this, beat) },
+					_react2.default.createElement(
+						'span',
+						{ className: 'beat-name' },
+						beat.name + ' | '
+					),
+					pads
+				);
+			}, this);
+
+			return _react2.default.createElement(
+				'div',
+				{ className: 'beat-list-section' },
+				_react2.default.createElement(
+					'h2',
+					null,
+					'Beat List'
+				),
+				_react2.default.createElement(
+					'ul',
+					{ className: 'beat-list' },
+					beats
+				)
+			);
+		}
+	}]);
+
+	return BeatList;
+}(_react.Component);
+
+exports.default = BeatList;
+
+},{"react":271}],286:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var context = new AudioContext();
 var destination = context.destination;
@@ -35471,27 +35547,11 @@ var Beatpad = function (_Component) {
 	function Beatpad(props) {
 		_classCallCheck(this, Beatpad);
 
-		var _this = _possibleConstructorReturn(this, (Beatpad.__proto__ || Object.getPrototypeOf(Beatpad)).call(this, props));
-
-		_this.state = {
-			beat: {
-				name: 'Acid Rain',
-				url: 'files/acid_rain.mp3'
-			},
-			beatpad: [{
-				name: 'Acid Rain',
-				url: 'files/acid_rain.mp3'
-			}, {
-				name: 'Cocoa Butter Kisses',
-				url: 'files/cocoa_butter_kisses.mp3'
-			}],
-			playing: false
-		};
-		return _this;
+		return _possibleConstructorReturn(this, (Beatpad.__proto__ || Object.getPrototypeOf(Beatpad)).call(this, props));
 	}
 
 	_createClass(Beatpad, [{
-		key: 'loadBeat',
+		key: "loadBeat",
 		value: function loadBeat(url) {
 			var request = new XMLHttpRequest();
 			request.open("GET", url, true);
@@ -35507,56 +35567,43 @@ var Beatpad = function (_Component) {
 			request.send();
 		}
 	}, {
-		key: 'playBeat',
+		key: "playBeat",
 		value: function playBeat(beat) {
 			source = context.createBufferSource();
 			this.loadBeat(beat.url);
 			source.start(0);
-
-			this.setState({
-				beat: beat,
-				playing: true
-			});
 		}
 	}, {
-		key: 'stopBeat',
-		value: function stopBeat() {
-			source.stop();
-
-			this.setState({
-				playing: false
-			});
-		}
-	}, {
-		key: 'padClick',
-		value: function padClick(beat) {
-			this.state.playing ? this.stopBeat() : this.playBeat(beat);
-		}
-	}, {
-		key: 'render',
+		key: "render",
 		value: function render() {
 			var _this2 = this;
 
-			var beatpad = this.state.beatpad.map(function (beat, index) {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'pad', key: index, onClick: _this2.padClick.bind(_this2, beat) },
-					index
-				);
+			var beatpad = this.props.beatpad.map(function (beat, index) {
+				if (Object.keys(beat).length == 0) {
+					return _react2.default.createElement(
+						"div",
+						{ className: 'pad disabled' + (_this2.props.editMode ? ' add' : ''), key: index, onClick: _this2.props.assignBeat.bind(_this2, index) },
+						_this2.props.editMode ? _react2.default.createElement(
+							"span",
+							null,
+							"+"
+						) : null
+					);
+				} else {
+					return _react2.default.createElement(
+						"div",
+						{ className: "pad", key: index, onMouseDown: _this2.playBeat.bind(_this2, beat) },
+						index + 1
+					);
+				}
 			});
 
 			return _react2.default.createElement(
-				'section',
-				{ className: 'beatpad' },
-				this.state.playing ? _react2.default.createElement(
-					'h1',
-					null,
-					'Playing: ',
-					this.state.beat.name
-				) : null,
+				"section",
+				{ className: "beatpad-section" },
 				_react2.default.createElement(
-					'div',
-					{ className: 'beatpad-wrapper' },
+					"div",
+					{ className: "beatpad-wrapper" },
 					beatpad
 				)
 			);
@@ -35568,12 +35615,14 @@ var Beatpad = function (_Component) {
 
 exports.default = Beatpad;
 
-},{"react":271}],286:[function(require,module,exports){
+},{"react":271}],287:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -35581,11 +35630,17 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Beatpad = require('./Beatpad.jsx');
+var _Beatpad = require('../containers/Beatpad.js');
 
 var _Beatpad2 = _interopRequireDefault(_Beatpad);
 
+var _BeatList = require('../containers/BeatList.js');
+
+var _BeatList2 = _interopRequireDefault(_BeatList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -35599,16 +35654,119 @@ var BeatpadPage = function (_Component) {
 	function BeatpadPage(props) {
 		_classCallCheck(this, BeatpadPage);
 
-		return _possibleConstructorReturn(this, (BeatpadPage.__proto__ || Object.getPrototypeOf(BeatpadPage)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (BeatpadPage.__proto__ || Object.getPrototypeOf(BeatpadPage)).call(this, props));
+
+		_this.state = {
+			queuedBeat: null,
+			editMode: false,
+			beatpad: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {
+				name: 'Kick C',
+				url: 'files/trad_kick_01_C.wav'
+			}, {
+				name: 'Kick D',
+				url: 'files/trad_kick_09_D.wav'
+			}, {
+				name: 'Kick E',
+				url: 'files/trad_kick_17_E.wav'
+			}, {
+				name: 'Kick F',
+				url: 'files/trad_kick_21_F.wav'
+			}, {
+				name: 'Kick G',
+				url: 'files/trad_kick_29_G.wav'
+			}, {
+				name: 'Kick A',
+				url: 'files/trad_kick_37_A.wav'
+			}, {
+				name: 'Kick B',
+				url: 'files/trad_kick_45_B.wav'
+			}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+			beats: [{
+				name: 'Kick C',
+				url: 'files/trad_kick_01_C.wav',
+				pads: [24]
+			}, {
+				name: 'Kick D',
+				url: 'files/trad_kick_09_D.wav',
+				pads: [25]
+			}, {
+				name: 'Kick E',
+				url: 'files/trad_kick_17_E.wav',
+				pads: [26]
+			}, {
+				name: 'Kick F',
+				url: 'files/trad_kick_21_F.wav',
+				pads: [27]
+			}, {
+				name: 'Kick G',
+				url: 'files/trad_kick_29_G.wav',
+				pads: [28]
+			}, {
+				name: 'Kick A',
+				url: 'files/trad_kick_37_A.wav',
+				pads: [29]
+			}, {
+				name: 'Kick B',
+				url: 'files/trad_kick_45_B.wav',
+				pads: [30]
+			}]
+		};
+		return _this;
 	}
 
 	_createClass(BeatpadPage, [{
+		key: 'setQueuedBeat',
+		value: function setQueuedBeat(beat) {
+			this.setState({
+				queuedBeat: beat,
+				editMode: true
+			});
+		}
+	}, {
+		key: 'assignBeat',
+		value: function assignBeat(pad) {
+			if (this.state.editMode) {
+				var beatpad = this.state.beatpad.map(function (beat, index) {
+					if (index == pad) {
+						return this.state.queuedBeat;
+					} else {
+						return beat;
+					}
+				}, this);
+
+				var beats = this.state.beats.map(function (beat, index) {
+					if (beat.name == this.state.queuedBeat.name) {
+						return _extends({}, beat, {
+							pads: [].concat(_toConsumableArray(beat.pads), [pad + 1])
+						});
+					} else {
+						return beat;
+					}
+				}, this);
+
+				this.setState({
+					beatpad: beatpad,
+					beats: beats,
+					queuedBeat: null,
+					editMode: false
+				});
+			}
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
 				{ className: 'beatpad-page' },
-				_react2.default.createElement(_Beatpad2.default, null)
+				_react2.default.createElement(_Beatpad2.default, {
+					queuedBeat: this.state.queuedBeat,
+					assignBeat: this.assignBeat.bind(this),
+					editMode: this.state.editMode,
+					beatpad: this.state.beatpad }),
+				_react2.default.createElement(_BeatList2.default, {
+					queuedBeat: this.state.queuedBeat,
+					setQueuedBeat: this.setQueuedBeat.bind(this),
+					beats: this.state.beats })
 			);
 		}
 	}]);
@@ -35618,7 +35776,103 @@ var BeatpadPage = function (_Component) {
 
 exports.default = BeatpadPage;
 
-},{"./Beatpad.jsx":285,"react":271}],287:[function(require,module,exports){
+},{"../containers/BeatList.js":288,"../containers/Beatpad.js":289,"react":271}],288:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _redux = require('redux');
+
+var _reactRedux = require('react-redux');
+
+var _BeatList = require('../components/BeatList.jsx');
+
+var _BeatList2 = _interopRequireDefault(_BeatList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/** Redux Container **/
+var mapStateToProps = function mapStateToProps(state) {
+	return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	return {};
+	// return bindActionCreators({
+	// }, dispatch);
+};
+
+/** GraphQL Container **/
+// const withQueryName = graphql(QUERY_NAME, {
+// 	props: ({ data }) => ({
+// 		users: data.users
+// 	})
+// });
+
+// const withMutateName = graphql(MUTATE_NAME, {
+// 	props: ({ ownProps, mutate }) => ({
+// 		mutateName(id, name) {
+// 			return mutate({ variables: { id, name } })
+// 				.then(result => {
+// 				ownProps.onUpdateName(result.id, result.name);
+// 			});
+// 		},
+// 	}),
+// });
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_BeatList2.default);
+
+},{"../components/BeatList.jsx":285,"react-redux":208,"redux":277}],289:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _redux = require('redux');
+
+var _reactRedux = require('react-redux');
+
+var _Beatpad = require('../components/Beatpad.jsx');
+
+var _Beatpad2 = _interopRequireDefault(_Beatpad);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/** Redux Container **/
+var mapStateToProps = function mapStateToProps(state) {
+	return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	return {};
+	// return bindActionCreators({
+	// }, dispatch);
+};
+
+/** GraphQL Container **/
+// const withQueryName = graphql(QUERY_NAME, {
+// 	props: ({ data }) => ({
+// 		users: data.users
+// 	})
+// });
+
+// const withMutateName = graphql(MUTATE_NAME, {
+// 	props: ({ ownProps, mutate }) => ({
+// 		mutateName(id, name) {
+// 			return mutate({ variables: { id, name } })
+// 				.then(result => {
+// 				ownProps.onUpdateName(result.id, result.name);
+// 			});
+// 		},
+// 	}),
+// });
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Beatpad2.default);
+
+},{"../components/Beatpad.jsx":286,"react-redux":208,"redux":277}],290:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35636,7 +35890,7 @@ var beatpad = function beatpad() {
 
 exports.default = beatpad;
 
-},{}],288:[function(require,module,exports){
+},{}],291:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35712,85 +35966,7 @@ var App = function (_Component) {
 
 exports.default = App;
 
-},{"../../beatpad/components/BeatpadPage.jsx":286,"../../home/components/HomePage.jsx":292,"../../profile/containers/ProfilePage.js":298,"./MainLayout.jsx":290,"react":271,"react-apollo":68,"react-router":240}],289:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Header = function (_Component) {
-	_inherits(Header, _Component);
-
-	function Header(props) {
-		_classCallCheck(this, Header);
-
-		return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
-	}
-
-	_createClass(Header, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'nav',
-				{ className: 'navbar navbar-toggleable-md navbar-light bg-inverse' },
-				_react2.default.createElement(
-					_reactRouter.Link,
-					{ to: '/home' },
-					_react2.default.createElement(
-						'span',
-						{ className: 'navbar-brand text-white' },
-						'BeatForge'
-					)
-				),
-				_react2.default.createElement(
-					'ul',
-					{ className: 'navbar-nav mr-auto' },
-					_react2.default.createElement(
-						'li',
-						{ className: 'nav-item active' },
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/beatpad', className: 'nav-link text-white' },
-							'Beatpad'
-						)
-					),
-					_react2.default.createElement(
-						'li',
-						{ className: 'nav-item' },
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/profile', className: 'nav-link text-white' },
-							'Profile'
-						)
-					)
-				)
-			);
-		}
-	}]);
-
-	return Header;
-}(_react.Component);
-
-exports.default = Header;
-
-},{"react":271,"react-router":240}],290:[function(require,module,exports){
+},{"../../beatpad/components/BeatpadPage.jsx":287,"../../home/components/HomePage.jsx":295,"../../profile/containers/ProfilePage.js":301,"./MainLayout.jsx":292,"react":271,"react-apollo":68,"react-router":240}],292:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35803,9 +35979,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Header = require('./Header.jsx');
+var _Navbar = require('./Navbar.jsx');
 
-var _Header2 = _interopRequireDefault(_Header);
+var _Navbar2 = _interopRequireDefault(_Navbar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35830,7 +36006,7 @@ var MainLayout = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'page' },
-        _react2.default.createElement(_Header2.default, null),
+        _react2.default.createElement(_Navbar2.default, null),
         _react2.default.createElement(
           'div',
           { className: 'view' },
@@ -35845,7 +36021,81 @@ var MainLayout = function (_Component) {
 
 exports.default = MainLayout;
 
-},{"./Header.jsx":289,"react":271}],291:[function(require,module,exports){
+},{"./Navbar.jsx":293,"react":271}],293:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Navbar = function (_Component) {
+	_inherits(Navbar, _Component);
+
+	function Navbar(props) {
+		_classCallCheck(this, Navbar);
+
+		return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this, props));
+	}
+
+	_createClass(Navbar, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'nav',
+				{ className: 'navbar' },
+				_react2.default.createElement(
+					_reactRouter.Link,
+					{ to: '/home', className: 'navbar-brand' },
+					_react2.default.createElement('img', { src: '/img/favicon-96.png', height: '80px', width: '80px' })
+				),
+				_react2.default.createElement(
+					'ul',
+					{ className: 'navbar-nav' },
+					_react2.default.createElement(
+						'li',
+						{ className: 'nav-item active' },
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/beatpad', className: 'nav-link' },
+							'Beatpad'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						{ className: 'nav-item' },
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/profile', className: 'nav-link' },
+							'Profile'
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return Navbar;
+}(_react.Component);
+
+exports.default = Navbar;
+
+},{"react":271,"react-router":240}],294:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35863,7 +36113,7 @@ var core = function core() {
 
 exports.default = core;
 
-},{}],292:[function(require,module,exports){
+},{}],295:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35909,7 +36159,7 @@ var HomePage = function (_Component) {
 
 exports.default = HomePage;
 
-},{"react":271}],293:[function(require,module,exports){
+},{"react":271}],296:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35927,7 +36177,7 @@ var home = function home() {
 
 exports.default = home;
 
-},{}],294:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -35989,7 +36239,7 @@ _reactDom2.default.render(_react2.default.createElement(_App2.default, {
     client: client
 }), document.getElementById('app'));
 
-},{"./beatpad/reducer.js":287,"./core/components/App.jsx":288,"./core/reducer.js":291,"./home/reducer.js":293,"./middleware":295,"./profile/reducer.js":301,"react":271,"react-apollo":68,"react-dom":72,"redux":277}],295:[function(require,module,exports){
+},{"./beatpad/reducer.js":290,"./core/components/App.jsx":291,"./core/reducer.js":294,"./home/reducer.js":296,"./middleware":298,"./profile/reducer.js":304,"react":271,"react-apollo":68,"react-dom":72,"redux":277}],298:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36000,7 +36250,7 @@ var _redux = require('redux');
 
 exports.default = (0, _redux.applyMiddleware)();
 
-},{"redux":277}],296:[function(require,module,exports){
+},{"redux":277}],299:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36014,7 +36264,7 @@ var updateName = exports.updateName = function updateName(id, name) {
 	};
 };
 
-},{}],297:[function(require,module,exports){
+},{}],300:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36044,7 +36294,8 @@ var ProfilePage = function (_Component) {
 		var _this = _possibleConstructorReturn(this, (ProfilePage.__proto__ || Object.getPrototypeOf(ProfilePage)).call(this, props));
 
 		_this.state = {
-			name: ''
+			name: '',
+			editMode: false
 		};
 		return _this;
 	}
@@ -36072,34 +36323,59 @@ var ProfilePage = function (_Component) {
 		value: function updateName() {
 			var name = this.state.name;
 			this.props.mutateName(1, name);
+
+			this.setState({
+				editMode: false
+			});
+		}
+	}, {
+		key: 'editName',
+		value: function editName() {
+			this.setState({
+				editMode: true
+			});
 		}
 	}, {
 		key: 'render',
 		value: function render() {
-			var name = '';
-			if (this.props.users) {
-				name = this.props.users[0].name;
+			var name = null;
+			if (this.state.editMode) {
+				name = _react2.default.createElement(
+					'span',
+					{ className: 'edit-name' },
+					_react2.default.createElement('input', { value: this.state.name, onChange: this.changeName.bind(this) }),
+					_react2.default.createElement(
+						'button',
+						{ onClick: this.updateName.bind(this) },
+						'Submit'
+					)
+				);
+			} else {
+				name = _react2.default.createElement(
+					'span',
+					{ className: 'name' },
+					_react2.default.createElement(
+						'span',
+						null,
+						this.state.name
+					),
+					_react2.default.createElement(
+						'button',
+						{ onClick: this.editName.bind(this) },
+						'Edit'
+					)
+				);
 			}
 
 			return _react2.default.createElement(
 				'div',
-				null,
-				_react2.default.createElement('input', { value: this.state.name, onChange: this.changeName.bind(this) }),
+				{ className: 'profile-page' },
 				_react2.default.createElement(
-					'button',
-					{ onClick: this.updateName.bind(this) },
-					'Submit'
-				),
-				_react2.default.createElement(
-					'h1',
+					'div',
 					null,
-					'ProfilePage'
+					_react2.default.createElement('img', { src: 'img/salt-bae-big.png', height: '300px', width: '300px' })
 				),
-				_react2.default.createElement(
-					'h2',
-					null,
-					this.state.name
-				)
+				name
 			);
 		}
 	}]);
@@ -36114,7 +36390,7 @@ ProfilePage.propTypes = {
 
 exports.default = ProfilePage;
 
-},{"react":271}],298:[function(require,module,exports){
+},{"react":271}],301:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36180,7 +36456,7 @@ var withMutateName = (0, _reactApollo.graphql)(_mutations.MUTATE_NAME, {
 
 exports.default = (0, _reactApollo.compose)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps), withQueryName, withMutateName)(_ProfilePage2.default);
 
-},{"../actions.js":296,"../components/ProfilePage.jsx":297,"../mutations.js":299,"../queries.js":300,"graphql-tag":33,"react-apollo":68,"react-redux":208,"redux":277}],299:[function(require,module,exports){
+},{"../actions.js":299,"../components/ProfilePage.jsx":300,"../mutations.js":302,"../queries.js":303,"graphql-tag":33,"react-apollo":68,"react-redux":208,"redux":277}],302:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36200,7 +36476,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
 var MUTATE_NAME = exports.MUTATE_NAME = (0, _graphqlTag2.default)(_templateObject);
 
-},{"graphql-tag":33}],300:[function(require,module,exports){
+},{"graphql-tag":33}],303:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36220,7 +36496,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
 var QUERY_NAME = exports.QUERY_NAME = (0, _graphqlTag2.default)(_templateObject);
 
-},{"graphql-tag":33}],301:[function(require,module,exports){
+},{"graphql-tag":33}],304:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36238,4 +36514,4 @@ var profile = function profile() {
 
 exports.default = profile;
 
-},{}]},{},[294]);
+},{}]},{},[297]);

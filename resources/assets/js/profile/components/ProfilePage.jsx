@@ -4,7 +4,8 @@ class ProfilePage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: ''
+			name: '',
+			editMode: false
 		};
 	}
 
@@ -27,22 +28,43 @@ class ProfilePage extends Component {
 	updateName() {
 		let name = this.state.name;
 		this.props.mutateName(1, name);
+
+		this.setState({
+			editMode: false
+		});
+	}
+
+	editName() {
+		this.setState({
+			editMode: true
+		});
 	}
 
 	render() {
-		let name = '';
-		if(this.props.users) {
-			name = this.props.users[0].name
+		let name = null;
+		if(this.state.editMode) {
+			name = (
+				<span className="edit-name">
+					<input value={this.state.name} onChange={this.changeName.bind(this)} />
+					<button onClick={this.updateName.bind(this)}>Submit</button>
+				</span>
+			);
+		} else {
+			name = (
+				<span className="name">
+					<span>{ this.state.name }</span>
+					<button onClick={this.editName.bind(this)}>Edit</button>
+				</span>
+			);
 		}
 
 		return(
-			<div>
-				<input value={this.state.name} onChange={this.changeName.bind(this)} />
-				<button onClick={this.updateName.bind(this)}>Submit</button>
-				<h1>ProfilePage</h1>
-				<h2>{ this.state.name }</h2>
+			<div className="profile-page">
+				<div>
+					<img src="img/salt-bae-big.png" height="300px" width="300px" />
+				</div>
+				{ name }
 			</div>
-
 		);
 	}
 }
