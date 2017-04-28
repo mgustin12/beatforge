@@ -91,7 +91,10 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'users' => 'App\GraphQL\Query\UsersQuery'
+                'user' => 'App\GraphQL\Query\UserQuery',
+                'beats' => 'App\GraphQL\Query\BeatsQuery',
+                'beat' => 'App\GraphQL\Query\BeatQuery',
+                'beatpad' => 'App\GraphQL\Query\BeatpadQuery'
             ],
             'mutation' => [
                 'updateUserName' => 'App\GraphQL\Mutation\UpdateUserNameMutation',
@@ -116,7 +119,10 @@ return [
     // ]
     //
     'types' => [
-        'User' => 'App\GraphQL\Type\UserType'
+        'User' => 'App\GraphQL\Type\UserType',
+        'Beat' => 'App\GraphQL\Type\BeatType',
+        'Beatpad' => 'App\GraphQL\Type\BeatpadType',
+        'Comment' => 'App\GraphQL\Type\CommentType'
     ],
 
     // This callable will received every Error objects for each errors GraphQL catch.

@@ -24,15 +24,19 @@ class Beat extends Model
 
     ];
 
-    public function user() {
-        return $this->belongsTo('App\Models\User');
+    public function creator() {
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
 	public function sharedBy() {
-		return $this->belongsToMany('App\Models\User');
+		return $this->belongsToMany('App\Models\User', 'beats_users');
 	}
 
     public function beatpads() {
-        return $this->belongsToMany('App\Models\Beatpad');
+        return $this->belongsToMany('App\Models\Beatpad', 'beatpads_beats');
+    }
+
+    public function comments() {
+        return $this->hasMany('App\Models\Comment');
     }
 }

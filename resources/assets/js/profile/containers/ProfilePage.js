@@ -10,8 +10,7 @@ import ProfilePage from '../components/ProfilePage.jsx';
 
 /** Redux Container **/
 const mapStateToProps = (state) => {
-    return {
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
