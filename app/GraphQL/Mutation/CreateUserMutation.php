@@ -30,7 +30,9 @@ class CreateUserMutation extends Mutation {
     {
 		$user = new User([
 			'username' => $args['username'],
-			'name' => $args['name']
+			'name' => $args['name'],
+            'beats' => [],
+            'beatpads' => []
 		]);
 
         $user->save();

@@ -97,8 +97,15 @@ return [
                 'beatpad' => 'App\GraphQL\Query\BeatpadQuery'
             ],
             'mutation' => [
-                'updateUserName' => 'App\GraphQL\Mutation\UpdateUserNameMutation',
-                'createUser' => 'App\GraphQL\Mutation\CreateUserMutation'
+                'createBeat' => 'App\GraphQL\Mutation\CreateBeatMutation',
+                'createBeatpad' => 'App\GraphQL\Mutation\CreateBeatpadMutation',
+                'createUser' => 'App\GraphQL\Mutation\CreateUserMutation',
+                'deleteBeat' => 'App\GraphQL\Mutation\DeleteBeatMutation',
+                'deleteBeatpad' => 'App\GraphQL\Mutation\DeleteBeatpadMutation',
+                'deleteUser' => 'App\GraphQL\Mutation\DeleteUserMutation',
+                'updateBeat' => 'App\GraphQL\Mutation\UpdateBeatMutation',
+                'updateBeatpad' => 'App\GraphQL\Mutation\UpdateBeatpadMutation',
+                'updateUser' => 'App\GraphQL\Mutation\UpdateUserMutation'
             ]
         ]
     ],
