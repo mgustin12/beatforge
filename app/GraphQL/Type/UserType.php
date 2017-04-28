@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Type;
 
+use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
@@ -26,6 +27,14 @@ class UserType extends GraphQLType {
             'username' => [
                 'type' => Type::string(),
                 'description' => 'The username of the user'
+            ],
+            'beats' => [
+                'type' => Type::listOf(GraphQL::type('Beat')),
+                'description' => 'The users beats'
+            ],
+            'beatpads' => [
+                'type' => Type::listOf(GraphQL::type('Beatpad')),
+                'description' => 'The users beatpads'
             ]
         ];
     }

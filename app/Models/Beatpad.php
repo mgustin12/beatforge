@@ -24,11 +24,11 @@ class Beatpad extends Model
 
     ];
 
-    public function user() {
-        return $this->belongsTo('App\Models\User');
+    public function creator() {
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
 	public function beats() {
-		return $this->belongsToMany('App\Models\Beat');
+		return $this->belongsToMany('App\Models\Beat', 'beatpads_beats');
 	}
 }

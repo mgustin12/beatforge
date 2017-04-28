@@ -5,7 +5,8 @@
   "scripts": {
     "start": "php -S localhost:8000 -t public",
     "gulp": "gulp && gulp watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "reseed": "php artisan migrate:refresh --seed"
   },
   "repository": {
     "type": "git",

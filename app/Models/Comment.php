@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 // use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 // use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class User extends Model
+class Comment extends Model
 {
     // use Authenticatable, Authorizable;
 
@@ -18,8 +18,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'username'
+        'text'
     ];
 
     /**
@@ -31,15 +30,11 @@ class User extends Model
 
     ];
 
-    public function beats() {
-        return $this->hasMany('App\Models\Beat');
+    public function beat() {
+        return $this->belongsTo('App\Models\Beat');
     }
 
-    public function sharedBeats() {
-        return $this->belongsToMany('App\Models\Beat', 'beats_users');
-    }
-
-    public function beatpads() {
-        return $this->hasMany('App\Models\Beatpad');
+    public function author() {
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBeatsTables extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,12 @@ class CreateBeatsTables extends Migration
      */
     public function up()
     {
-        Schema::create('beats', function(Blueprint $table) {
+        Schema::create('comments', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('user_id')->unsigned();
-            $table->integer('upvotes')->unsigned();
-            $table->string('path');
-            $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
-        });
-
-        Schema::create('beats_users', function(Blueprint $table) {
-            $table->increments('id');
+            $table->string('text');
             $table->integer('user_id')->unsigned();
             $table->integer('beat_id')->unsigned();
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('beat_id')->references('id')->on('beats');
@@ -41,7 +32,6 @@ class CreateBeatsTables extends Migration
      */
     public function down()
     {
-        Schema::drop('beats_users');
-        Schema::drop('beats');
+        Schema::drop('comments');
     }
 }

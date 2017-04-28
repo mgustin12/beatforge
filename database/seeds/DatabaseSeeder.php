@@ -12,9 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'John Doe',
-            'username' => 'jdoe'
-        ]);
+        $this->call(UsersTableSeeder::class);
+        $this->call(BeatsTableSeeder::class);
+        $this->call(CommentsTableSeeder::class);
+        $this->call(BeatpadsTableSeeder::class);
+        $this->call(BeatsUsersTableSeeder::class);
+        $this->call(BeatpadsBeatsTableSeeder::class);
     }
 }

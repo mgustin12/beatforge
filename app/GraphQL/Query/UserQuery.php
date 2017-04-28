@@ -2,20 +2,21 @@
 
 namespace App\GraphQL\Query;
 
+use Log;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use App\Models\User;
 
-class UsersQuery extends Query {
+class UserQuery extends Query {
 
     protected $attributes = [
-        'name' => 'users'
+        'name' => 'user'
     ];
 
     public function type()
     {
-        return Type::listOf(GraphQL::type('User'));
+        return GraphQL::type('User');
     }
 
     public function args()
@@ -29,11 +30,7 @@ class UsersQuery extends Query {
     {
         if(isset($args['id']))
         {
-            return User::where('id' , $args['id'])->get();
-        }
-        else
-        {
-            return User::all();
+			return User::find($args['id']);
         }
     }
 

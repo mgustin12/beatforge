@@ -5,17 +5,17 @@ namespace App\GraphQL\Query;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use App\Models\User;
+use App\Models\Beatpad;
 
-class UsersQuery extends Query {
+class BeatpadQuery extends Query {
 
     protected $attributes = [
-        'name' => 'users'
+        'name' => 'beatpad'
     ];
 
     public function type()
     {
-        return Type::listOf(GraphQL::type('User'));
+        return GraphQL::type('Beatpad');
     }
 
     public function args()
@@ -29,11 +29,7 @@ class UsersQuery extends Query {
     {
         if(isset($args['id']))
         {
-            return User::where('id' , $args['id'])->get();
-        }
-        else
-        {
-            return User::all();
+            return Beatpad::find($args['id']);
         }
     }
 
